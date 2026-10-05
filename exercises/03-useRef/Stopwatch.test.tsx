@@ -1,52 +1,69 @@
-import { render, screen, waitFor } from '@testing-library/react'
-import userEvent from '@testing-library/user-event'
-import { describe, it, expect } from 'vitest'
+import { render, screen, fireEvent, act, cleanup } from '@testing-library/react'
+import { describe, it, expect, vi, beforeEach, afterEach } from 'vitest'
 import Stopwatch from './Stopwatch'
+import source from './Stopwatch.tsx?raw'
+import { code } from '../../tests/source'
 
-describe('Stopwatch', () => {
-  it('starts counting', async () => {
-    render(<Stopwatch />)
-    await userEvent.click(screen.getByRole('button', { name: /start/i }))
-    await waitFor(() => expect(screen.getByTestId('time')).not.toHaveTextContent('0'), {
-      timeout: 2000,
-    })
+const time = () => Number(screen.getByTestId('time').textContent)
+const wait = (ms: number) => act(() => { vi.advanceTimersByTime(ms) })
+const press = (name: RegExp) => fireEvent.click(screen.getByRole('button', { name }))
+
+describe('03 useRef: Stopwatch', () => {
+  beforeEach(() => {
+    vi.useFakeTimers({ toFake: ['setInterval', 'clearInterval', 'setTimeout', 'clearTimeout'] })
   })
 
-  it('stops counting', async () => {
-    render(<Stopwatch />)
-    await userEvent.click(screen.getByRole('button', { name: /start/i }))
-    await waitFor(() => expect(screen.getByTestId('time')).not.toHaveTextContent('0'), {
-      timeout: 2000,
-    })
-    const paused = Number(screen.getByTestId('time').textContent)
-    await userEvent.click(screen.getByRole('button', { name: /stop/i }))
-    await new Promise(r => setTimeout(r, 200))
-    const now = Number(screen.getByTestId('time').textContent)
-    expect(now).toBeGreaterThanOrEqual(paused)
-    expect(now).toBeLessThanOrEqual(paused + 2)
+  afterEach(() => {
+    cleanup()
+    vi.useRealTimers()
   })
 
-  it('does not create multiple intervals', async () => {
+  it('counts up after Start', () => {
     render(<Stopwatch />)
-    const toggle = screen.getByRole('button', { name: /start/i })
-    await userEvent.click(toggle)
-    await new Promise(r => setTimeout(r, 150))
-    await userEvent.click(toggle)
-    const afterFirst = Number(screen.getByTestId('time').textContent)
-    await userEvent.click(toggle)
-    await new Promise(r => setTimeout(r, 150))
-    await userEvent.click(toggle)
-    const afterSecond = Number(screen.getByTestId('time').textContent)
-
-    expect(afterSecond).toBeGreaterThanOrEqual(afterFirst)
-    expect(afterSecond).toBeLessThanOrEqual(afterFirst + 5)
+    press(/start/i)
+    wait(1000)
+    expect(time()).toBeGreaterThan(0)
   })
 
-  it('records laps', async () => {
+  it('actually stops after Stop', () => {
     render(<Stopwatch />)
-    await userEvent.click(screen.getByRole('button', { name: /start/i }))
-    await new Promise(r => setTimeout(r, 50))
-    await userEvent.click(screen.getByRole('button', { name: /lap/i }))
+    press(/start/i)
+    wait(500)
+    press(/stop/i)
+    const frozen = time()
+    wait(2000)
+    expect(time()).toBe(frozen)
+  })
+
+  it('runs at the same speed after stopping and starting again', () => {
+    render(<Stopwatch />)
+    press(/start/i)
+    wait(1000)
+    press(/stop/i)
+    const first = time()
+    press(/start/i)
+    wait(1000)
+    press(/stop/i)
+    expect(time() - first).toBe(first)
+  })
+
+  it('records a lap', () => {
+    render(<Stopwatch />)
+    press(/start/i)
+    wait(300)
+    press(/lap/i)
     expect(screen.getByTestId('laps').children.length).toBe(1)
+  })
+
+  it('clears the interval when the stopwatch goes away', () => {
+    const { unmount } = render(<Stopwatch />)
+    press(/start/i)
+    wait(300)
+    unmount()
+    expect(vi.getTimerCount()).toBe(0)
+  })
+
+  it('keeps the interval id in useRef', () => {
+    expect(code(source)).toMatch(/useRef\s*[<(]/)
   })
 })

@@ -31,6 +31,12 @@ function FriendList({ friends }) {
 
 Open `FriendList.tsx`. The `removeFriend` function is recreated on every render, so `FriendItem` re-renders even when it should not. Use `useCallback` to keep the function reference stable.
 
+## Check your work
+
+```bash
+npm test -- 05-useCallback
+```
+
 ## Rules
 
 - Do not edit `FriendList.test.tsx`.

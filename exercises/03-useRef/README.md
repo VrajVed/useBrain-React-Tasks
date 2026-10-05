@@ -2,45 +2,62 @@
 
 ## What it does
 
-`useRef` gives you a box that keeps the same reference across renders. Changing it does not re-render the component.
+`useRef` gives you a box called `ref.current` that React keeps safe between renders. Changing what is inside the box does **not** re-render the component.
+
+From the Web Dev Head's notes: it fixes the problem where `let a = 0` goes back to `0` every time the component re-renders.
+
+Two common uses:
+
+1. **Remember a value without showing it.** Timer IDs, previous values, counters for debugging.
+2. **Grab a real DOM element.** Put `ref={btnRef}` on a tag, then use `btnRef.current` like you would in plain JS.
 
 ## Where it is used
 
-- Holding a timer ID
-- Referencing DOM nodes
-- Keeping previous values without causing re-renders
+- Holding a `setInterval` / `setTimeout` ID so you can clear it later
+- Focusing an input when a page opens
+- Scrolling to an element
+- Measuring the size of an element
 
 ## Fun example
 
-A stopwatch. Start, stop, and record lap times. The interval ID must survive re-renders without triggering them.
+Paint a button red as soon as it appears, straight through the DOM.
 
 ```jsx
-import { useState, useEffect, useRef } from 'react'
-
-function Stopwatch() {
-  const [time, setTime] = useState(0)
-  const [running, setRunning] = useState(false)
-  const intervalRef = useRef<ReturnType<typeof setInterval> | null>(null)
+function RedButton() {
+  const btnRef = useRef(null)
 
   useEffect(() => {
-    if (running) {
-      intervalRef.current = setInterval(() => setTime(t => t + 1), 10)
-    } else if (intervalRef.current) {
-      clearInterval(intervalRef.current)
-      intervalRef.current = null
-    }
-    return () => {
-      if (intervalRef.current) clearInterval(intervalRef.current)
-    }
-  }, [running])
+    btnRef.current.style.backgroundColor = 'red'
+  }, [])
 
-  // ...
+  return <button ref={btnRef}>I am red</button>
 }
 ```
 
+## useRef vs useState
+
+| | `useState` | `useRef` |
+|---|---|---|
+| Survives re-renders | yes | yes |
+| Changing it re-renders the component | yes | **no** |
+| Use it for | things shown on screen | things the screen does not need |
+
 ## Your task
 
-Open `Stopwatch.tsx`. It stores the interval ID in a normal variable, so it is lost on every re-render. Use `useRef` to hold the interval ID and `useEffect` to start/stop the timer and clean up on unmount.
+Open `Stopwatch.tsx`. Run `npm run dev`, pick exercise 03, press Start, then Stop. It does not stop. Press Start again and it speeds up.
+
+The bug: `let intervalId` is a normal variable, so it is created fresh (as `null`) on every render. By the time you press Stop, the ID of the running interval is gone.
+
+Fix it:
+
+1. Keep the interval ID in a `useRef`, so Stop can clear the right interval.
+2. Clear the interval if the stopwatch disappears (unmounts). Think about which hook gives you a cleanup function.
+
+## Check your work
+
+```bash
+npm test -- 03-useRef
+```
 
 ## Rules
 

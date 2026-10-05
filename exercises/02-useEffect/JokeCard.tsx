@@ -1,12 +1,15 @@
 import { useState } from 'react'
 
+type Joke = { setup: string; punchline: string }
+
 export default function JokeCard() {
   const [joke, setJoke] = useState<string | null>(null)
 
-  fetch('https://official-joke-api.appspot.com/jokes/programming/random')
+  fetch('/jokes.json')
     .then(res => res.json())
-    .then(data => {
-      setJoke(data[0].setup + ' ' + data[0].punchline)
+    .then((jokes: Joke[]) => {
+      const pick = jokes[Math.floor(Math.random() * jokes.length)]
+      setJoke(pick.setup + ' ' + pick.punchline)
     })
 
   return (

@@ -1,10 +1,13 @@
 {
   "exercises/01-useState/Counter.test.tsx": "05aa983d084fd523b95393c6421032cf3f3123b7fc1b9de261237c871d5756c9",
-  "exercises/02-useEffect/JokeCard.test.tsx": "2b609f58a284aeab2f704c2abb7e21af6e93bac171ae2cc3366225a7eb3d2214",
-  "exercises/03-useRef/Stopwatch.test.tsx": "821a12d9e095b2f6f08e61ce78b87c3245d3d2faad4dcb83d71517f2d832d32b",
+  "exercises/02-useEffect/JokeCard.test.tsx": "475ae8a5bca2c1ade7709655fb7b12903c1783ace30b2b607f4ec7fa3370b032",
+  "exercises/03-useRef/Stopwatch.test.tsx": "42e304513264681a9ed225b90937ae8e2c8d4068b84c686c72a612239c9539c2",
   "exercises/04-useMemo/MagicFinder.test.tsx": "19047d1d0f119346f21854bbcb34504c7bab8e59c7fc9af5ad565336340ebd1e",
   "exercises/05-useCallback/FriendList.test.tsx": "300f3ebb75e082f438f721c2ed6efad036bf8fc258b2d6113690c2cb55e22801",
-  "exercises/06-useReducer/PizzaBuilder.test.tsx": "7db03f39b696a54e060bed86e7e43e3fdd73f5babe7e873e2be601a57021b543",
-  "exercises/07-useContext/ThemeApp.test.tsx": "432b9f087739e6b18644cf2dd35d314cd65a94a570e77808e64ccbce30eed21e",
-  "exercises/08-useLocalStorage/ThemeToggle.test.tsx": "8d1b23e4a98d2fb725bb064c2433302277e7379014a1ee8d168c999ca7288b92"
+  "exercises/06-useReducer/PizzaBuilder.test.tsx": "f46bea9aa9f7e634326cc72eb57fd286952d3d47c068e8e58b97371562dd9939",
+  "exercises/07-useContext/ThemeApp.test.tsx": "82f8f478bfe318859474c2f1aa79d6694a8e4632bc422e4b31940e95dcc9c986",
+  "exercises/08-useLocalStorage/ThemeToggle.test.tsx": "359a0cada7185a06d69477b8af49f9d68cc3ba7961686745ead5eefc89cc88ac",
+  "tests/setup.ts": "27b9e0f69d156c680ff63560e58a12c01a4abec1bdb4756534c93e13c1f278ea",
+  "tests/source.ts": "8319943b0f334e12221e27258200105af8a6d536a0361f5590e6c1eb80c89d0f",
+  "vite.config.ts": "422f44dfb6e38c01da3ca3989213f022a633001f5a7a506607e4165f26dc027f"
 }

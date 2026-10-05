@@ -1,0 +1,34 @@
+[
+  {
+    "setup": "Why do programmers prefer dark mode?",
+    "punchline": "Because light attracts bugs."
+  },
+  {
+    "setup": "Why did the React component break up with the DOM?",
+    "punchline": "Too many unnecessary re-renders."
+  },
+  {
+    "setup": "How many programmers does it take to change a light bulb?",
+    "punchline": "None. That is a hardware problem."
+  },
+  {
+    "setup": "Why was the JavaScript developer sad?",
+    "punchline": "Because he did not Node how to Express himself."
+  },
+  {
+    "setup": "What is a useEffect without a dependency array?",
+    "punchline": "A very enthusiastic infinite loop."
+  },
+  {
+    "setup": "Why do Java developers wear glasses?",
+    "punchline": "Because they do not C#."
+  },
+  {
+    "setup": "What did the array say after it was extended?",
+    "punchline": "Stop objectifying me."
+  },
+  {
+    "setup": "Why did the developer go broke?",
+    "punchline": "He used up all his cache."
+  }
+]

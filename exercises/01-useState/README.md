@@ -4,6 +4,8 @@
 
 `useState` lets a component remember a value between renders. When you call the setter, React re-renders the component with the new value.
 
+From the Web Dev Head's notes: whenever a state is changed, React re-renders the entire component. A normal `let` variable is created fresh on every render, so it can never remember anything.
+
 ## Where it is used
 
 - Counters and quantity pickers
@@ -33,6 +35,12 @@ function SliceCounter() {
 ## Your task
 
 Open `Counter.tsx`. It uses a normal variable, so the buttons do nothing. Replace it with `useState` so the counter updates on screen.
+
+## Check your work
+
+```bash
+npm test -- 01-useState
+```
 
 ## Rules
 
