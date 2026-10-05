@@ -41,7 +41,7 @@ function App() {
                 return (
                   <button key={key} className={key === active.key ? 'active' : ''} onClick={() => open(key)}>
                     <span className="letter">{p.id[0]}</span>
-                    {p.title}
+                    <span className="title">{p.title}</span>
                   </button>
                 )
               })}

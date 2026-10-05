@@ -4,7 +4,7 @@ The one hook AI can't call for you.
 
 Learn React hooks by fixing broken mini apps. Each exercise is a small app that does not work yet. You read a short lesson, see the bug with your own eyes, fix the code, and the tests tell you when you got it right.
 
-**You solve everything in a playground in your browser.** Run `npm run dev` and you get the lesson on one side and your live broken app on the other, updating every time you save. See the bug, fix it, watch it work. Setup is below.
+**You work with two windows side by side:** VS Code where you fix the code, and a playground in your browser (`npm run dev`) with the lesson and your live app. Every time you save in VS Code, the app in the browser updates on its own. See the bug, fix it, watch it work. Setup is below.
 
 Made for the DJSCE Compute web dev co-committee.
 
@@ -134,6 +134,31 @@ npm test -- 01-useState/a
 This checks part `a` of hook 01 and keeps watching. Every time you save, it checks again. Change it to the part you are on: `01-useState/b`, `02-useEffect/a` and so on. Leave out the letter (`npm test -- 01-useState`) to check all three parts of a hook. Press `q` to stop it.
 
 To stop the playground, click into its terminal and press Ctrl + C.
+
+### Put them side by side
+
+This is how you will work the whole time: **VS Code on one half of the screen, the browser on the other.**
+
+```
+┌─────────────────────────┬─────────────────────────┐
+│ VS Code                 │ Browser (playground)    │
+│                         │                         │
+│  the file you fix       │  Task / Lesson          │
+│                         │  your live app          │
+│ ─────────────────────── │                         │
+│  terminals: dev + tests │                         │
+└─────────────────────────┴─────────────────────────┘
+```
+
+- **Windows:** click the VS Code window, press **Windows key + Left arrow**. Click the browser, press **Windows key + Right arrow**.
+- **Mac:** hover over the green button at the top left of the VS Code window and pick the option that puts it on the **left half**. Then pick the browser for the right half.
+- **Linux:** most desktops snap with **Super + Left / Right arrow**.
+
+At half width the playground switches to a narrow layout: part buttons on top, **your live app right under them**, and the task and lesson below. You see the result of every save without scrolling.
+
+Then the loop is: read the task, find the file in VS Code on the left (the task tells you which), edit, save with **Ctrl + S** (Cmd + S on Mac), and look right. The app updates and terminal 2 reruns the tests.
+
+Small screen? Keep VS Code full screen and switch to the browser with **Alt + Tab** (Cmd + Tab on Mac) after each save.
 
 ---
 
