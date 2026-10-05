@@ -1,4 +1,8 @@
 {
+  ".github/copilot-instructions.md": "68ae1c4b7f56638d4b00d647931225427740bbc833ed36e694948d72c45bd6a8",
+  "AGENTS.md": "68ae1c4b7f56638d4b00d647931225427740bbc833ed36e694948d72c45bd6a8",
+  "CLAUDE.md": "336cc4fbf19beaada7ccf9986414fa91851a8d7a07dfb3ccbe800a69eed0ab49",
+  "GEMINI.md": "68ae1c4b7f56638d4b00d647931225427740bbc833ed36e694948d72c45bd6a8",
   "exercises/01-useState/Counter.test.tsx": "05aa983d084fd523b95393c6421032cf3f3123b7fc1b9de261237c871d5756c9",
   "exercises/02-useEffect/JokeCard.test.tsx": "475ae8a5bca2c1ade7709655fb7b12903c1783ace30b2b607f4ec7fa3370b032",
   "exercises/03-useRef/Stopwatch.test.tsx": "42e304513264681a9ed225b90937ae8e2c8d4068b84c686c72a612239c9539c2",

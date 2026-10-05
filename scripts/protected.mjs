@@ -1,9 +1,9 @@
 import { readdirSync, statSync } from 'node:fs'
 import { join } from 'node:path'
 
-// Files students must not change. Everything the tests depend on.
+// Files students must not change: everything the tests depend on, plus the AI tutor rules.
 export function protectedFiles(root = '.') {
-  const out = ['vite.config.ts']
+  const out = ['vite.config.ts', 'AGENTS.md', 'CLAUDE.md', 'GEMINI.md', '.github/copilot-instructions.md']
   const walk = dir => {
     for (const name of readdirSync(join(root, dir))) {
       const rel = join(dir, name)

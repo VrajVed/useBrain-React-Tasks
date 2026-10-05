@@ -53,6 +53,7 @@ Want a green tick on your own commits too? Open the **Actions** tab in your fork
 - **Do not edit test files** (`*.test.tsx`) or anything in `tests/`. The checker uses its own copy anyway, so editing them only fools you.
 - Write `NOTES.md` yourself. Short is fine, copied is not.
 - AI tools: use them like a teacher, not like a vending machine. If you cannot explain your fix line by line, you have not finished.
+- This repo ships an `AGENTS.md` (plus `CLAUDE.md`, `GEMINI.md` and Copilot instructions). Coding agents that open this folder turn into tutors: they ask questions and give hints, they do not write the fix. These files are protected like the tests.
 
 ## Exercises
 
@@ -72,3 +73,7 @@ Want a green tick on your own commits too? Open the **Actions** tab in your fork
 - Read the error in the terminal from the top. The first red line is usually the real one.
 - Tests print a hint next to some failures, read it.
 - Ask in the committee group, with the exact error.
+
+## License
+
+MIT

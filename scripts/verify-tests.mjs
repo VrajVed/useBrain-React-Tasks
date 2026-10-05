@@ -15,8 +15,8 @@ for (const file of protectedFiles()) {
 
 if (problems.length) {
   console.error(problems.join('\n'))
-  console.error('\nTests are read only. Fix the component, not the test.')
+  console.error('\nThese files are read only: tests, test helpers and the AI tutor rules. Fix the component instead.')
   console.error('Undo with: git checkout upstream/main -- <file>  (or copy it back from the original repo)')
   process.exit(1)
 }
-console.log('All test files are untouched.')
+console.log('All protected files are untouched.')
