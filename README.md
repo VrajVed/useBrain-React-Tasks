@@ -4,6 +4,8 @@ The one hook AI can't call for you.
 
 Learn React hooks by fixing broken mini apps. Each exercise is a small app that does not work yet. You read a short lesson, see the bug with your own eyes, fix the code, and the tests tell you when you got it right.
 
+**You solve everything in a playground in your browser.** Run `npm run dev` and you get the lesson on one side and your live broken app on the other, updating every time you save. See the bug, fix it, watch it work. Setup is below.
+
 Made for the DJSCE Compute web dev co-committee.
 
 ## Quick start
