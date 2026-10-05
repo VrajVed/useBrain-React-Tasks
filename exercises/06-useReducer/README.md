@@ -1,4 +1,4 @@
-# Exercise 6: useReducer
+# 06 useReducer
 
 ## What it does
 
@@ -29,19 +29,14 @@ function reducer(state, action) {
 }
 ```
 
-## Your task
+## The three parts
 
-Open `PizzaBuilder.tsx`. It works, but the logic for changing toppings is spread across loose functions. Move all of it into one `reducer` function and use `useReducer`. The pizza should behave exactly the same, this is a refactor.
+Do them in order. Each one is a folder in here with its own task and tests.
 
-The tests check the behaviour **and** that you really used `useReducer`.
+1. **a: Pizza builder, from useState to useReducer**
+2. **b: Canteen cart, pure reducers**
+3. **c: Login form, one status instead of many booleans**
 
-## Check your work
+Check one part with `npm test -- 06-useReducer/a` (or `/b`, `/c`). Check all three with `npm test -- 06-useReducer`.
 
-```bash
-npm test -- 06-useReducer
-```
-
-## Rules
-
-- Do not edit `PizzaBuilder.test.tsx`.
-- Use `useReducer` for state and actions. No `useState` left in the file.
+When all three pass, answer `NOTES.md` in this folder.

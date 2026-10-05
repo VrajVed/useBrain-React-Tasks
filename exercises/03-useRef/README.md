@@ -1,4 +1,4 @@
-# Exercise 3: useRef
+# 03 useRef
 
 ## What it does
 
@@ -42,24 +42,14 @@ function RedButton() {
 | Changing it re-renders the component | yes | **no** |
 | Use it for | things shown on screen | things the screen does not need |
 
-## Your task
+## The three parts
 
-Open `Stopwatch.tsx`. Run `npm run dev`, pick exercise 03, press Start, then Stop. It does not stop. Press Start again and it speeds up.
+Do them in order. Each one is a folder in here with its own task and tests.
 
-The bug: `let intervalId` is a normal variable, so it is created fresh (as `null`) on every render. By the time you press Stop, the ID of the running interval is gone.
+1. **a: Search box, grabbing a DOM element**
+2. **b: Stopwatch, remembering a timer id**
+3. **c: Send later, the latest value inside a timer**
 
-Fix it:
+Check one part with `npm test -- 03-useRef/a` (or `/b`, `/c`). Check all three with `npm test -- 03-useRef`.
 
-1. Keep the interval ID in a `useRef`, so Stop can clear the right interval.
-2. Clear the interval if the stopwatch disappears (unmounts). Think about which hook gives you a cleanup function.
-
-## Check your work
-
-```bash
-npm test -- 03-useRef
-```
-
-## Rules
-
-- Do not edit `Stopwatch.test.tsx`.
-- Use `useRef` for the interval ID.
+When all three pass, answer `NOTES.md` in this folder.

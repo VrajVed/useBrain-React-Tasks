@@ -1,4 +1,4 @@
-# Exercise 5: useCallback
+# 05 useCallback
 
 ## What it does
 
@@ -27,17 +27,14 @@ function FriendList({ friends }) {
 }
 ```
 
-## Your task
+## The three parts
 
-Open `FriendList.tsx`. The `removeFriend` function is recreated on every render, so `FriendItem` re-renders even when it should not. Use `useCallback` to keep the function reference stable.
+Do them in order. Each one is a folder in here with its own task and tests.
 
-## Check your work
+1. **a: Friend list, stopping extra re-renders**
+2. **b: Cookie clicker, the stale callback**
+3. **c: User card, the effect that never stops**
 
-```bash
-npm test -- 05-useCallback
-```
+Check one part with `npm test -- 05-useCallback/a` (or `/b`, `/c`). Check all three with `npm test -- 05-useCallback`.
 
-## Rules
-
-- Do not edit `FriendList.test.tsx`.
-- Use `useCallback` for `removeFriend`.
+When all three pass, answer `NOTES.md` in this folder.

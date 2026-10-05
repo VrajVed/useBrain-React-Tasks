@@ -1,4 +1,4 @@
-# Exercise 4: useMemo
+# 04 useMemo
 
 ## What it does
 
@@ -30,19 +30,14 @@ function Lottery({ tickets, findWinner }) {
 }
 ```
 
-## Your task
+## The three parts
 
-Open `MagicFinder.tsx`. Run `npm run dev`, pick exercise 04, and click Toggle mode a few times. It feels laggy, because `findMagic` is slow and runs on **every** render, even though only the colour changed. Open the DevTools **Console** and watch it print every time.
+Do them in order. Each one is a folder in here with its own task and tests.
 
-Wrap it in `useMemo` so it only runs when `tickets` or `findMagic` change. After your fix, toggling should feel instant and the console should stay quiet.
+1. **a: Lucky ticket, skipping a slow calculation**
+2. **b: Meme search, getting the dependencies right**
+3. **c: Dashboard, keeping an object the same**
 
-## Check your work
+Check one part with `npm test -- 04-useMemo/a` (or `/b`, `/c`). Check all three with `npm test -- 04-useMemo`.
 
-```bash
-npm test -- 04-useMemo
-```
-
-## Rules
-
-- Do not edit `MagicFinder.test.tsx`.
-- Use `useMemo` with the correct dependency array.
+When all three pass, answer `NOTES.md` in this folder.

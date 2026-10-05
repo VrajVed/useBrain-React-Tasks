@@ -1,4 +1,4 @@
-# Exercise 2: useEffect
+# 02 useEffect
 
 ## What it does
 
@@ -56,26 +56,14 @@ controller.abort()                           // cancel it
 
 A cancelled fetch fails on purpose, so add a `.catch(() => {})` at the end of the chain.
 
-## Your task
+## The three parts
 
-Open `JokeCard.tsx`. Run `npm run dev`, pick exercise 02, and open DevTools (F12) on the **Network** tab. Watch the requests pile up.
+Do them in order. Each one is a folder in here with its own task and tests.
 
-The bugs:
+1. **a: Greeting, the dependency array**
+2. **b: Joke card, fetching and cancelling**
+3. **c: Slide show, cleaning up event listeners**
 
-1. `fetch` is called straight inside the component. Every render fetches, and every fetch causes another render.
-2. Nothing cancels the request if the card disappears.
+Check one part with `npm test -- 02-useEffect/a` (or `/b`, `/c`). Check all three with `npm test -- 02-useEffect`.
 
-Fix it so the joke is fetched **once**, and the request is **cancelled in the cleanup function**.
-
-> Side note: real React apps usually wrap everything in `<StrictMode>`, which runs effects twice in development on purpose to catch missing cleanups. This playground turns it off so what you see matches the tests.
-
-## Check your work
-
-```bash
-npm test -- 02-useEffect
-```
-
-## Rules
-
-- Do not edit `JokeCard.test.tsx`.
-- Answer the questions in `NOTES.md` in your own words.
+When all three pass, answer `NOTES.md` in this folder.

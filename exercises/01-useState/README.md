@@ -1,4 +1,4 @@
-# Exercise 1: useState
+# 01 useState
 
 ## What it does
 
@@ -32,17 +32,14 @@ function SliceCounter() {
 }
 ```
 
-## Your task
+## The three parts
 
-Open `Counter.tsx`. It uses a normal variable, so the buttons do nothing. Replace it with `useState` so the counter updates on screen.
+Do them in order. Each one is a folder in here with its own task and tests.
 
-## Check your work
+1. **a: Slice counter, a normal variable vs state**
+2. **b: Slice party, the updater function**
+3. **c: Todo list, new arrays and objects instead of changing them**
 
-```bash
-npm test -- 01-useState
-```
+Check one part with `npm test -- 01-useState/a` (or `/b`, `/c`). Check all three with `npm test -- 01-useState`.
 
-## Rules
-
-- Do not edit `Counter.test.tsx`.
-- Do not use `let` to store the count.
+When all three pass, answer `NOTES.md` in this folder.

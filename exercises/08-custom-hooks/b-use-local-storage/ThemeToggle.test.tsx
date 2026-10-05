@@ -4,7 +4,7 @@ import { describe, it, expect, vi, beforeEach, afterEach } from 'vitest'
 import ThemeToggle from './ThemeToggle'
 import { useLocalStorage } from './useLocalStorage'
 import source from './ThemeToggle.tsx?raw'
-import { code } from '../../tests/source'
+import { code } from '../../../tests/source'
 
 const storage: Record<string, string> = {}
 

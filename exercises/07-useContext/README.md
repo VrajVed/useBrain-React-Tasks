@@ -1,4 +1,4 @@
-# Exercise 7: useContext
+# 07 useContext
 
 ## What it does
 
@@ -38,19 +38,14 @@ You can pass objects too: `value={{ count, setCount }}`.
 - The logged in user
 - Language of the site
 
-## Your task
+## The three parts
 
-Open `ThemeApp.tsx`. The theme is drilled from `ThemeApp` to `Layout` to `Card`. `Layout` does nothing with it except pass it on.
+Do them in order. Each one is a folder in here with its own task and tests.
 
-Create a `ThemeContext`, provide the theme in `ThemeApp`, and read it in `Card` with `useContext`. `Layout` and `Card` should not take a `theme` prop anymore.
+1. **a: Theme, no more prop drilling**
+2. **b: Auth, sharing functions through context**
+3. **c: useAuth, wrapping context in a hook**
 
-## Check your work
+Check one part with `npm test -- 07-useContext/a` (or `/b`, `/c`). Check all three with `npm test -- 07-useContext`.
 
-```bash
-npm test -- 07-useContext
-```
-
-## Rules
-
-- Do not edit `ThemeApp.test.tsx`.
-- Create and use a `ThemeContext`.
+When all three pass, answer `NOTES.md` in this folder.

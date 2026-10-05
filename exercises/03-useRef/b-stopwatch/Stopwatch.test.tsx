@@ -2,7 +2,7 @@ import { render, screen, fireEvent, act, cleanup } from '@testing-library/react'
 import { describe, it, expect, vi, beforeEach, afterEach } from 'vitest'
 import Stopwatch from './Stopwatch'
 import source from './Stopwatch.tsx?raw'
-import { code } from '../../tests/source'
+import { code } from '../../../tests/source'
 
 const time = () => Number(screen.getByTestId('time').textContent)
 const wait = (ms: number) => act(() => { vi.advanceTimersByTime(ms) })

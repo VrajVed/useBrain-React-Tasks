@@ -3,7 +3,7 @@ import userEvent from '@testing-library/user-event'
 import { describe, it, expect } from 'vitest'
 import ThemeApp from './ThemeApp'
 import source from './ThemeApp.tsx?raw'
-import { code } from '../../tests/source'
+import { code } from '../../../tests/source'
 
 describe('ThemeApp', () => {
   it('starts in light mode', () => {
