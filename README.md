@@ -15,10 +15,10 @@ git clone https://github.com/<your-username>/useBrain-React-Tasks.git
 cd useBrain-React-Tasks
 npm install
 npm run dev                 # terminal 1: the playground, open the link it prints
-npm test -- 01-useState     # terminal 2: tests for the exercise you are on
+npm test -- 01-useState/a   # terminal 2: tests for the part you are on
 ```
 
-Fix `exercises/01-useState/Counter.tsx` until the tests go green, answer `NOTES.md`, commit, push, next exercise.
+Fix `exercises/01-useState/a-slice-counter/Counter.tsx` until the tests go green, then parts `b` and `c`, answer `NOTES.md`, commit, push, next hook.
 
 **Never used Git, GitHub or a terminal before?** That is fine. Skip the box above and follow this page from Part 1, top to bottom, without skipping steps. The first setup takes about 20 minutes, after that it is just coding.
 
@@ -119,17 +119,17 @@ npm run dev
 
 It prints a link like `http://localhost:5173`. Ctrl + click it (Cmd + click on Mac) to open it in your browser. You will see:
 
-- **Left:** the list of exercises, 01 to 08
-- **Middle:** the lesson for the exercise you picked
+- **Left:** the 8 hooks, each with 3 parts: `a`, `b`, `c`
+- **Middle:** two tabs. **Task** is what to fix in this part. **Lesson** explains the hook. Read the Lesson first whenever you start a new hook
 - **Right:** the live app. It updates by itself every time you save a file
 
 **Terminal 2, the tests:**
 
 ```bash
-npm test -- 01-useState
+npm test -- 01-useState/a
 ```
 
-This checks exercise 01 and keeps watching. Every time you save, it checks again. Change `01-useState` to the exercise you are on (`02-useEffect`, `03-useRef` and so on). Press `q` to stop it.
+This checks part `a` of hook 01 and keeps watching. Every time you save, it checks again. Change it to the part you are on: `01-useState/b`, `02-useEffect/a` and so on. Leave out the letter (`npm test -- 01-useState`) to check all three parts of a hook. Press `q` to stop it.
 
 To stop the playground, click into its terminal and press Ctrl + C.
 
@@ -137,32 +137,45 @@ To stop the playground, click into its terminal and press Ctrl + C.
 
 ## Part 4: Solve an exercise
 
-Go **in order**, 01 to 08. Each one builds on the one before.
+There are **8 hooks**, and each hook has **3 parts**: `a`, `b` and `c`. That is 24 small exercises. Go **in order**: 01 a, 01 b, 01 c, then 02 a, and so on. Each part builds on the one before.
 
-Every exercise lives in its own folder inside `exercises/`, for example `exercises/01-useState/`:
+Each hook has its own folder in `exercises/`, and each part has its own folder inside it:
+
+```
+exercises/01-useState/
+  README.md            the lesson for useState (the Lesson tab)
+  NOTES.md             questions about all three parts, you answer these
+  a-slice-counter/
+    README.md          what to fix in this part (the Task tab)
+    Counter.tsx        the broken app: fix this
+    Counter.test.tsx   the tests: never touch this
+  b-plus-three/
+  c-todo-list/
+```
 
 | File | What it is | Touch it? |
 |---|---|---|
-| `README.md` | The lesson. Same as the middle of the playground | Read it |
-| `Counter.tsx` (the component) | The broken app | **Yes, this is what you fix** |
-| `Counter.test.tsx` | The tests that check your fix | **No, never** |
-| `NOTES.md` | Questions about what you learned | **Yes, answer them** |
+| `README.md` | The lesson (in the hook folder) or the task (in a part folder) | Read it |
+| `Counter.tsx`, `SliceParty.tsx` ... | The broken app | **Yes, this is what you fix** |
+| `*.test.tsx` | The tests that check your fix | **No, never** |
+| `NOTES.md` | Questions about the hook | **Yes, answer them** |
 
-The loop for every exercise:
+The loop for every part:
 
-1. **Read** the lesson in the playground.
-2. **Play** with the broken app on the right. Find the bug with your own eyes before touching code.
-3. **Fix** the component file in VS Code and save (Ctrl + S).
+1. **Read** the Task tab (and the Lesson tab when you start a new hook).
+2. **Play** with the broken app on the right. Find the bug with your own eyes before touching code. Many parts also print to the browser **Console** (F12).
+3. **Fix** the file the task tells you to fix, and save (Ctrl + S).
 4. **Check** terminal 2.
-5. **Answer** `NOTES.md` in your own words. Write your answer under each question.
-6. **Submit** (Part 5).
+5. **Submit** (Part 5). You can push after every part, you do not have to wait for the whole hook.
+
+When all three parts of a hook pass, answer that hook's `NOTES.md` in your own words, under each question.
 
 ### Reading the test output
 
 When something is still wrong, you see red:
 
 ```
- ❯ exercises/01-useState/Counter.test.tsx (4 tests | 3 failed)
+ ❯ exercises/01-useState/a-slice-counter/Counter.test.tsx (4 tests | 3 failed)
    × Counter > increments when + is clicked
      → expect(element).toHaveTextContent()
 
@@ -177,12 +190,12 @@ Read it like a sentence: *"When + is clicked, the test expected to see `1`, but 
 When you are done, you see green:
 
 ```
- ✓ exercises/01-useState/Counter.test.tsx (4 tests)
+ ✓ exercises/01-useState/a-slice-counter/Counter.test.tsx (4 tests)
  Test Files  1 passed (1)
       Tests  4 passed (4)
 ```
 
-All green means move on to the next one. Some tests also print a hint in plain English next to the failure, so read the whole thing.
+All green means move on to the next part. Some tests also print a hint in plain English next to the failure, so read the whole thing.
 
 ---
 
@@ -193,7 +206,7 @@ Submitting = saving a version of your code (**commit**) and sending it to your f
 ### Easiest way: VS Code
 
 1. Click the **Source Control** icon on the left side of VS Code (the one that looks like a branch, or press Ctrl + Shift + G).
-2. Type a short message in the box, like `solved 01`.
+2. Type a short message in the box, like `solved 01 a`.
 3. Click **Commit**. If it asks "stage all changes?", click **Yes**.
 4. Click **Sync Changes** (or **Publish**).
 5. The first time, it asks you to sign in to GitHub in your browser. Allow it.
@@ -202,7 +215,7 @@ Submitting = saving a version of your code (**commit**) and sending it to your f
 
 ```bash
 git add .
-git commit -m "solved 01"
+git commit -m "solved 01 a"
 git push
 ```
 
@@ -211,6 +224,8 @@ git push
 Open your fork on GitHub. You should see your message next to the files and "1 minute ago" or similar.
 
 That is it. Every hour a checker visits your fork, runs the **original** tests on your code, and updates the committee progress sheet. You do not have to tell anyone, pushing is the submission. It can take up to an hour to show up.
+
+On the sheet, a hook gets its ✅ only when **all three** of its parts pass.
 
 ---
 
@@ -236,12 +251,13 @@ Run all of these inside the `useBrain-React-Tasks` folder.
 |---|---|
 | `npm install` | Installs the project's packages. Once after cloning, and again if `package.json` ever changes |
 | `npm run dev` | Starts the playground at `http://localhost:5173`. Stop with Ctrl + C |
-| `npm test -- 03-useRef` | Tests one exercise and reruns on every save. Stop with `q` |
-| `npm test` | Tests all exercises, reruns on every save |
+| `npm test -- 03-useRef/b` | Tests one part and reruns on every save. Stop with `q` |
+| `npm test -- 03-useRef` | Tests all three parts of one hook |
+| `npm test` | Tests everything, reruns on every save |
 | `npm run test:run` | Tests everything once and exits |
 | `npm run verify-tests` | Checks you did not change any test or protected file by accident |
 | `git status` | Shows which files you changed |
-| `git add .` then `git commit -m "solved 03"` | Saves a version of your work |
+| `git add .` then `git commit -m "solved 03 b"` | Saves a version of your work |
 | `git push` | Sends your saved versions to your fork on GitHub |
 | `git pull` | Gets the latest version of your fork onto your laptop |
 
@@ -270,16 +286,16 @@ Still stuck? Ask in the committee group. Send the **exact error** (copy the text
 
 ## The exercises
 
-| # | Hook | App you fix |
-|---|---|---|
-| 01 | `useState` | Pizza slice counter |
-| 02 | `useEffect` | Joke card |
-| 03 | `useRef` | Stopwatch |
-| 04 | `useMemo` | Lucky ticket finder |
-| 05 | `useCallback` | Gaming lobby friend list |
-| 06 | `useReducer` | Pizza builder |
-| 07 | `useContext` | Theme without prop drilling |
-| 08 | custom hook | `useLocalStorage` |
+| # | Hook | a | b | c |
+|---|---|---|---|---|
+| 01 | `useState` | Slice counter | Slice party (updater function) | Todo list (new arrays and objects) |
+| 02 | `useEffect` | Greeting (dependency array) | Joke card (fetch and cancel) | Slide show (cleaning up listeners) |
+| 03 | `useRef` | Search box (DOM refs) | Stopwatch (timer ids) | Send later (latest value) |
+| 04 | `useMemo` | Lucky ticket (slow calculation) | Meme search (stale dependencies) | Dashboard (same object) |
+| 05 | `useCallback` | Friend list (extra re-renders) | Cookie clicker (stale callback) | User card (effect loop) |
+| 06 | `useReducer` | Pizza builder (refactor) | Canteen cart (pure reducer) | Login form (one status) |
+| 07 | `useContext` | Theme (prop drilling) | Auth (functions in context) | useAuth (hook + helpful error) |
+| 08 | custom hooks | useToggle | useLocalStorage | useDebounce |
 
 ## License
 

@@ -56,15 +56,17 @@ If the question needs no reasoning (which version of React is this, what does `n
 
 ## Exercises
 
-| # | Hook | File to fix |
-|---|---|---|
-| 01 | `useState` | `exercises/01-useState/Counter.tsx` |
-| 02 | `useEffect` | `exercises/02-useEffect/JokeCard.tsx` |
-| 03 | `useRef` | `exercises/03-useRef/Stopwatch.tsx` |
-| 04 | `useMemo` | `exercises/04-useMemo/MagicFinder.tsx` |
-| 05 | `useCallback` | `exercises/05-useCallback/FriendList.tsx` |
-| 06 | `useReducer` | `exercises/06-useReducer/PizzaBuilder.tsx` |
-| 07 | `useContext` | `exercises/07-useContext/ThemeApp.tsx` |
-| 08 | custom hook | `exercises/08-useLocalStorage/useLocalStorage.ts` and `ThemeToggle.tsx` |
+There are 8 hooks with 3 parts each (`a`, `b`, `c`), 24 in total. Each part lives in `exercises/<hook>/<part>/` with its own `README.md` (the task), a component to fix, and a read only test. Each hook folder has a `README.md` (the lesson) and a `NOTES.md` the student answers.
 
-They should go in order. If they jump ahead, ask whether the earlier ones pass.
+| # | Hook | a | b | c |
+|---|---|---|---|---|
+| 01 | `useState` | slice counter | updater function | immutable arrays and objects |
+| 02 | `useEffect` | dependency array | fetch with abort cleanup | event listener cleanup |
+| 03 | `useRef` | DOM ref focus | interval id | latest value inside a timeout |
+| 04 | `useMemo` | slow calculation | stale dependencies | referentially stable object |
+| 05 | `useCallback` | memo child re-renders | stale callback | function as effect dependency |
+| 06 | `useReducer` | refactor from useState | pure reducer | status state machine |
+| 07 | `useContext` | prop drilling | functions in context | custom hook with provider guard |
+| 08 | custom hooks | useToggle | useLocalStorage | useDebounce |
+
+They should go in order, 01 a to 08 c. If they jump ahead, ask whether the earlier parts pass. Tests for one part: `npm test -- 02-useEffect/b`.
