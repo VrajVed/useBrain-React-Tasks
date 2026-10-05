@@ -1,10 +1,10 @@
-// Hookslings tracker. Paste into the Apps Script editor of the Google Sheet
+// useBrain tracker. Paste into the Apps Script editor of the Google Sheet
 // (Extensions > Apps Script), run setup() once, then deploy as a web app.
 
 var PROGRESS = 'Progress'
 var LOG = 'Log'
 var ROSTER = 'Roster'
-var TOKEN_KEY = 'HOOKSLINGS_TOKEN'
+var TOKEN_KEY = 'USEBRAIN_TOKEN'
 var PASS = '\u2705'
 
 function setup() {
@@ -18,11 +18,11 @@ function setup() {
     token = (Utilities.getUuid() + Utilities.getUuid()).replace(/-/g, '')
     props.setProperty(TOKEN_KEY, token)
   }
-  Logger.log('Put this in the GitHub secret HOOKSLINGS_TRACKER_TOKEN: ' + token)
+  Logger.log('Put this in the GitHub secret USEBRAIN_TRACKER_TOKEN: ' + token)
 }
 
 function doGet() {
-  return json_({ ok: true, service: 'hookslings tracker' })
+  return json_({ ok: true, service: 'usebrain tracker' })
 }
 
 function doPost(e) {

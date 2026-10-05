@@ -1,4 +1,6 @@
-# Hookslings
+# useBrain()
+
+The one hook AI can't call for you.
 
 Learn React hooks by fixing broken components. Each exercise is a small app that does not work yet. Read the lesson, fix the component, make the tests pass.
 
@@ -9,8 +11,8 @@ Made for the DJSCE Compute web dev co-committee.
 1. Click **Fork** at the top of this page. Keep the fork **public** and keep the name.
 2. Clone **your fork**, not this repo:
    ```bash
-   git clone https://github.com/<your-username>/Compute-React-Task.git
-   cd Compute-React-Task
+   git clone https://github.com/<your-username>/useBrain-React-Tasks.git
+   cd useBrain-React-Tasks
    npm install
    ```
 3. Open two terminals:

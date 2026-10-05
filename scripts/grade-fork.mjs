@@ -17,7 +17,7 @@ if (!/^[\w.-]+\/[\w.-]+$/.test(fork ?? '')) {
   process.exit(2)
 }
 
-const work = mkdtempSync(join(tmpdir(), 'hookslings-'))
+const work = mkdtempSync(join(tmpdir(), 'usebrain-'))
 const [owner, repo] = fork.split('/')
 const exercises = readdirSync('exercises').filter(d => /^\d{2}-/.test(d)).sort()
 

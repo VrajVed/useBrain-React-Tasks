@@ -1,5 +1,6 @@
-# Runs in your fork on every push so you get a green tick or a red cross.
+# In your fork: runs on every push so you get a green tick or a red cross.
 # Forks have Actions turned off by default: open the Actions tab in your fork and enable them.
+# In the original repo the starters are broken on purpose, so there it only checks the tests are untouched.
 name: check
 
 on:
@@ -19,4 +20,5 @@ jobs:
       - name: Tests must be untouched
         run: npm run verify-tests
       - name: Run tests
+        if: github.event.repository.fork
         run: npm run test:run

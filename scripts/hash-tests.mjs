@@ -7,6 +7,6 @@ const hashes = {}
 for (const file of protectedFiles()) {
   hashes[file] = createHash('sha256').update(readFileSync(file)).digest('hex')
 }
-mkdirSync('.hookslings', { recursive: true })
-writeFileSync('.hookslings/test-hashes.json', JSON.stringify(hashes, null, 2) + '\n')
+mkdirSync('.usebrain', { recursive: true })
+writeFileSync('.usebrain/test-hashes.json', JSON.stringify(hashes, null, 2) + '\n')
 console.log(`hashed ${Object.keys(hashes).length} protected files`)

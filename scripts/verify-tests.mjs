@@ -2,7 +2,7 @@ import { createHash } from 'node:crypto'
 import { readFileSync, existsSync } from 'node:fs'
 import { protectedFiles } from './protected.mjs'
 
-const expected = JSON.parse(readFileSync('.hookslings/test-hashes.json', 'utf8'))
+const expected = JSON.parse(readFileSync('.usebrain/test-hashes.json', 'utf8'))
 const problems = []
 
 for (const [file, hash] of Object.entries(expected)) {

@@ -4,7 +4,7 @@ import { exercises } from './exercises'
 import ErrorBoundary from './ErrorBoundary'
 import './App.css'
 
-const SAVED = 'hookslings:active'
+const SAVED = 'usebrain:active'
 
 function App() {
   const [activeId, setActiveId] = useState(() => localStorage.getItem(SAVED) ?? exercises[0].id)
@@ -19,7 +19,7 @@ function App() {
   return (
     <div className="app">
       <aside className="sidebar">
-        <h1>Hookslings</h1>
+        <h1>useBrain()</h1>
         <p className="tagline">Fix the component. Make the tests pass. Go in order.</p>
         <nav>
           {exercises.map(ex => (

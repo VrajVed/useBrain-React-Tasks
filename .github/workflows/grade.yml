@@ -25,7 +25,7 @@ jobs:
       - id: list
         env:
           GH_TOKEN: ${{ github.token }}
-          HAS_TRACKER: ${{ secrets.HOOKSLINGS_TRACKER_URL != '' }}
+          HAS_TRACKER: ${{ secrets.USEBRAIN_TRACKER_URL != '' }}
           REPO: ${{ github.repository }}
         run: |
           if [ "$HAS_TRACKER" != "true" ]; then
@@ -84,6 +84,6 @@ jobs:
           merge-multiple: true
       - name: Send to Google Sheet
         env:
-          TRACKER_URL: ${{ secrets.HOOKSLINGS_TRACKER_URL }}
-          TRACKER_TOKEN: ${{ secrets.HOOKSLINGS_TRACKER_TOKEN }}
+          TRACKER_URL: ${{ secrets.USEBRAIN_TRACKER_URL }}
+          TRACKER_TOKEN: ${{ secrets.USEBRAIN_TRACKER_TOKEN }}
         run: node scripts/report.mjs results
