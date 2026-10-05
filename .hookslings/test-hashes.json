@@ -1,0 +1,10 @@
+{
+  "exercises/useState/Counter.test.tsx": "3c9c1edc703ef5e918bbbce36f29683461c96cbf37608b7ae761de523f109ff8",
+  "exercises/useEffect/JokeCard.test.tsx": "2b609f58a284aeab2f704c2abb7e21af6e93bac171ae2cc3366225a7eb3d2214",
+  "exercises/useRef/Stopwatch.test.tsx": "1695d6130bbf0948ce3a5820ce8d86d2bcc374a82e7e112214b53ce462a3e270",
+  "exercises/useMemo/MagicFinder.test.tsx": "5605156e4f08d4fbda64c0aa8517331c96d3ed2c4fb4bff99aa66eacc45ecbb5",
+  "exercises/useCallback/FriendList.test.tsx": "7363d276758bea02398a7ac2d448431107fc845baf915510d24b4d06d87a1c15",
+  "exercises/useReducer/PizzaBuilder.test.tsx": "7db03f39b696a54e060bed86e7e43e3fdd73f5babe7e873e2be601a57021b543",
+  "exercises/useContext/ThemeApp.test.tsx": "432b9f087739e6b18644cf2dd35d314cd65a94a570e77808e64ccbce30eed21e",
+  "exercises/useLocalStorage/ThemeToggle.test.tsx": "24023a146580d43397a1e23050f7a8844b3c4d85d737d198534c68233a6d1331"
+}

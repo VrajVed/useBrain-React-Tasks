@@ -1,0 +1,37 @@
+name: hookslings
+
+on:
+  push:
+    branches: [main, master]
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+
+      - run: npm ci
+
+      - name: Verify tests are unchanged
+        run: npm run verify-tests
+
+      - name: Run tests
+        run: npm run test:run -- --reporter=json --outputFile=.hookslings/results.json
+
+      - name: Extract completed exercises
+        id: completed
+        run: node .github/scripts/extract-completed.js
+
+      - name: Submit progress to tracker
+        run: node .github/scripts/submit.js
+        env:
+          TRACKER_URL: ${{ secrets.HOOKSLINGS_TRACKER_URL }}
+          TRACKER_TOKEN: ${{ secrets.HOOKSLINGS_TRACKER_TOKEN }}
+          COMMIT_SHA: ${{ github.sha }}
+          GITHUB_ACTOR: ${{ github.actor }}
+          EXERCISES: ${{ steps.completed.outputs.exercises }}
