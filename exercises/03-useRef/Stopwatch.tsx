@@ -10,7 +10,7 @@ export default function Stopwatch() {
   const toggle = () => {
     if (!running) {
       setRunning(true)
-      intervalId = setInterval(() => setTime(t => t + 1), 10)
+      intervalId = setInterval(() => setTime(t => t + 1), 100)
     } else {
       setRunning(false)
       if (intervalId) clearInterval(intervalId)

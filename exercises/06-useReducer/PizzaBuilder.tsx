@@ -22,8 +22,8 @@ export default function PizzaBuilder() {
       <button onClick={() => addTopping('mushroom')}>Add mushroom</button>
       <button onClick={() => removeTopping('cheese')}>Remove cheese</button>
       <ul data-testid="toppings">
-        {toppings.map(t => (
-          <li key={t}>{t}</li>
+        {toppings.map((t, i) => (
+          <li key={`${t}-${i}`}>{t}</li>
         ))}
       </ul>
     </div>

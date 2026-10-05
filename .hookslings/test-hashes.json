@@ -1,7 +1,7 @@
 {
   "exercises/01-useState/Counter.test.tsx": "05aa983d084fd523b95393c6421032cf3f3123b7fc1b9de261237c871d5756c9",
   "exercises/02-useEffect/JokeCard.test.tsx": "2b609f58a284aeab2f704c2abb7e21af6e93bac171ae2cc3366225a7eb3d2214",
-  "exercises/03-useRef/Stopwatch.test.tsx": "1695d6130bbf0948ce3a5820ce8d86d2bcc374a82e7e112214b53ce462a3e270",
+  "exercises/03-useRef/Stopwatch.test.tsx": "821a12d9e095b2f6f08e61ce78b87c3245d3d2faad4dcb83d71517f2d832d32b",
   "exercises/04-useMemo/MagicFinder.test.tsx": "19047d1d0f119346f21854bbcb34504c7bab8e59c7fc9af5ad565336340ebd1e",
   "exercises/05-useCallback/FriendList.test.tsx": "300f3ebb75e082f438f721c2ed6efad036bf8fc258b2d6113690c2cb55e22801",
   "exercises/06-useReducer/PizzaBuilder.test.tsx": "7db03f39b696a54e060bed86e7e43e3fdd73f5babe7e873e2be601a57021b543",
