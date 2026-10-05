@@ -13,7 +13,7 @@ export default function PizzaBuilder() {
     setToppings(toppings.filter(t => t !== topping))
   }
 
-  const total = 100
+  const total = 100 + toppings.length * TOPPING_PRICE
 
   return (
     <div>
