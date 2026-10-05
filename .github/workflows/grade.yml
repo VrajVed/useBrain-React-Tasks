@@ -1,6 +1,7 @@
 # Runs only in the upstream repo (it needs the tracker secrets, which forks never get).
 # Every hour it finds every fork, puts the ORIGINAL tests on top of the student's code,
 # runs them, and sends the results to the Google Sheet.
+# Pushes to forks cannot trigger anything here, so new work shows up on the next hourly run.
 name: grade
 
 on:
@@ -54,8 +55,8 @@ jobs:
       matrix:
         fork: ${{ fromJSON(needs.discover.outputs.forks) }}
     steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-node@v4
+      - uses: actions/checkout@v7
+      - uses: actions/setup-node@v7
         with:
           node-version: 24
           cache: npm
@@ -64,7 +65,7 @@ jobs:
         env:
           FORK: ${{ matrix.fork }}
         run: node scripts/grade-fork.mjs "$FORK" grade-out
-      - uses: actions/upload-artifact@v4
+      - uses: actions/upload-artifact@v7
         with:
           name: result-${{ strategy.job-index }}
           path: grade-out/*.json
@@ -77,11 +78,11 @@ jobs:
     if: always() && needs.discover.outputs.enabled == 'true'
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-node@v4
+      - uses: actions/checkout@v7
+      - uses: actions/setup-node@v7
         with:
           node-version: 24
-      - uses: actions/download-artifact@v4
+      - uses: actions/download-artifact@v8
         if: needs.discover.outputs.count != '0'
         with:
           pattern: result-*
