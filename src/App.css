@@ -6,6 +6,7 @@
   --accent: #7c3aed;
   --accent-hover: #8b5cf6;
   --border: #2a2a35;
+  --danger: #f87171;
 }
 
 * {
@@ -14,75 +15,163 @@
 
 body {
   margin: 0;
-  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  font-family: system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
   background: var(--bg);
   color: var(--text);
 }
 
+code,
+pre {
+  font-family: ui-monospace, 'JetBrains Mono', Menlo, monospace;
+}
+
 .app {
-  display: flex;
-  min-height: 100vh;
+  display: grid;
+  grid-template-columns: 260px minmax(0, 1fr) minmax(0, 1fr);
+  height: 100vh;
 }
 
 .sidebar {
-  width: 280px;
   background: var(--card);
   border-right: 1px solid var(--border);
-  padding: 24px;
+  padding: 24px 16px;
+  overflow-y: auto;
 }
 
 .sidebar h1 {
-  margin: 0 0 8px;
-  font-size: 24px;
+  margin: 0 0 6px;
+  font-size: 22px;
 }
 
 .tagline {
   color: var(--muted);
-  font-size: 14px;
-  margin: 0 0 24px;
+  font-size: 13px;
+  margin: 0 0 20px;
 }
 
 .sidebar nav {
   display: flex;
   flex-direction: column;
-  gap: 8px;
+  gap: 6px;
 }
 
-.sidebar button {
+.sidebar nav button {
+  display: flex;
+  gap: 12px;
+  align-items: center;
   text-align: left;
   background: transparent;
   color: var(--text);
   border: 1px solid var(--border);
   border-radius: 8px;
-  padding: 12px 16px;
+  padding: 10px 12px;
   cursor: pointer;
-  font-size: 14px;
-  transition: background 0.15s, border-color 0.15s;
 }
 
-.sidebar button:hover {
+.sidebar nav button:hover {
   background: rgba(124, 58, 237, 0.1);
 }
 
-.sidebar button.active {
+.sidebar nav button.active {
   border-color: var(--accent);
   background: rgba(124, 58, 237, 0.2);
 }
 
-.stage {
-  flex: 1;
-  padding: 40px;
+.sidebar .num {
+  font-weight: 700;
+  color: var(--accent-hover);
+  font-size: 18px;
 }
 
-.stage h2 {
-  margin: 0 0 24px;
+.sidebar small {
+  display: block;
+  color: var(--muted);
+  font-size: 12px;
+}
+
+.lesson {
+  padding: 28px 32px;
+  overflow-y: auto;
+  border-right: 1px solid var(--border);
+  line-height: 1.6;
+  font-size: 15px;
+}
+
+.lesson h1 {
+  margin-top: 0;
+  font-size: 24px;
+}
+
+.lesson h2 {
+  font-size: 18px;
+  margin-top: 28px;
+  color: var(--accent-hover);
+}
+
+.lesson pre {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 14px;
+  overflow-x: auto;
+  font-size: 13px;
+}
+
+.lesson :not(pre) > code {
+  background: var(--card);
+  padding: 2px 6px;
+  border-radius: 4px;
+  font-size: 13px;
+}
+
+.lesson table {
+  border-collapse: collapse;
+}
+
+.lesson th,
+.lesson td {
+  border: 1px solid var(--border);
+  padding: 6px 10px;
+}
+
+.lesson blockquote {
+  margin: 0;
+  padding-left: 14px;
+  border-left: 3px solid var(--accent);
+  color: var(--muted);
+}
+
+.stage {
+  padding: 28px 32px;
+  overflow-y: auto;
+}
+
+.stage-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 16px;
+}
+
+.stage-head h2 {
+  margin: 0;
+}
+
+.cmd {
+  background: var(--card);
+  border: 1px solid var(--border);
+  padding: 6px 10px;
+  border-radius: 6px;
+  font-size: 12px;
+  color: var(--muted);
 }
 
 .component-box {
   background: var(--card);
   border: 1px solid var(--border);
   border-radius: 12px;
-  padding: 32px;
+  padding: 28px;
   min-height: 200px;
 }
 
@@ -94,8 +183,7 @@ body {
   padding: 10px 16px;
   cursor: pointer;
   font-size: 14px;
-  margin-right: 8px;
-  margin-bottom: 8px;
+  margin: 0 8px 8px 0;
 }
 
 .component-box button:hover {
@@ -112,12 +200,42 @@ body {
   border-bottom: 1px solid var(--border);
 }
 
+.hint {
+  color: var(--muted);
+  font-size: 13px;
+}
+
+.crash {
+  color: var(--danger);
+}
+
+.crash pre {
+  white-space: pre-wrap;
+  background: rgba(248, 113, 113, 0.08);
+  padding: 12px;
+  border-radius: 8px;
+}
+
 .light {
   background: #f3f4f6;
   color: #111827;
+  padding: 12px;
+  border-radius: 8px;
 }
 
 .dark {
   background: #111827;
   color: #f3f4f6;
+  padding: 12px;
+  border-radius: 8px;
+}
+
+@media (max-width: 1100px) {
+  .app {
+    grid-template-columns: 1fr;
+    height: auto;
+  }
+  .lesson {
+    border-right: none;
+  }
 }
