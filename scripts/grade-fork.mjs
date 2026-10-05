@@ -65,19 +65,33 @@ function notesWritten(original, mine) {
     .replace(/\s+/g, '').length
 }
 
+// Copy the student's files into this checkout, part folders included.
+// Skips tests, symlinks, odd file types and huge files. Never creates or replaces a test.
+function copyStudentFiles(from, to, depth = 0) {
+  for (const name of readdirSync(from)) {
+    const src = join(from, name)
+    const st = lstatSync(src)
+    if (st.isSymbolicLink()) continue
+    if (st.isDirectory()) {
+      if (depth < 2 && /^[\w.-]+$/.test(name) && !name.startsWith('.')) copyStudentFiles(src, join(to, name), depth + 1)
+      continue
+    }
+    if (!st.isFile() || !allowed(name) || st.size > 200_000) continue
+    mkdirSync(to, { recursive: true })
+    cpSync(src, join(to, name))
+  }
+}
+
 const notes = {}
 for (const ex of exercises) {
   const theirs = join(src, 'exercises', ex)
-  const original = existsSync(join('exercises', ex, 'NOTES.md')) ? readFileSync(join('exercises', ex, 'NOTES.md'), 'utf8') : ''
-  notes[ex] = false
-  if (!existsSync(theirs)) continue
-  for (const name of readdirSync(theirs)) {
-    const from = join(theirs, name)
-    const st = lstatSync(from)
-    if (!st.isFile() || !allowed(name) || st.size > 200_000) continue
-    if (name === 'NOTES.md') notes[ex] = notesWritten(original, readFileSync(from, 'utf8')) >= 60
-    cpSync(from, join('exercises', ex, name))
-  }
+  const originalNotes = join('exercises', ex, 'NOTES.md')
+  const original = existsSync(originalNotes) ? readFileSync(originalNotes, 'utf8') : ''
+  const theirNotes = join(theirs, 'NOTES.md')
+  notes[ex] = existsSync(theirNotes) && lstatSync(theirNotes).isFile()
+    ? notesWritten(original, readFileSync(theirNotes, 'utf8')) >= 60
+    : false
+  if (existsSync(theirs) && lstatSync(theirs).isDirectory()) copyStudentFiles(theirs, join('exercises', ex))
 }
 
 const report = join(work, 'vitest.json')
