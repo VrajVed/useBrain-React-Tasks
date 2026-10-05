@@ -8,6 +8,7 @@ Learn React hooks by fixing broken components. Each exercise has a short lesson 
 2. Clone your fork.
 3. Install dependencies: `npm install`
 4. Run tests: `npm run test:run`
+5. Run the interactive UI: `npm run dev`
 5. Read the README inside each exercise folder, then fix the component.
 6. Push to `main`. CI will record your progress automatically.
 

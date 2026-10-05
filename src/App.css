@@ -1,0 +1,123 @@
+:root {
+  --bg: #0f0f13;
+  --card: #18181f;
+  --text: #f0f0f5;
+  --muted: #a0a0b0;
+  --accent: #7c3aed;
+  --accent-hover: #8b5cf6;
+  --border: #2a2a35;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  background: var(--bg);
+  color: var(--text);
+}
+
+.app {
+  display: flex;
+  min-height: 100vh;
+}
+
+.sidebar {
+  width: 280px;
+  background: var(--card);
+  border-right: 1px solid var(--border);
+  padding: 24px;
+}
+
+.sidebar h1 {
+  margin: 0 0 8px;
+  font-size: 24px;
+}
+
+.tagline {
+  color: var(--muted);
+  font-size: 14px;
+  margin: 0 0 24px;
+}
+
+.sidebar nav {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.sidebar button {
+  text-align: left;
+  background: transparent;
+  color: var(--text);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 12px 16px;
+  cursor: pointer;
+  font-size: 14px;
+  transition: background 0.15s, border-color 0.15s;
+}
+
+.sidebar button:hover {
+  background: rgba(124, 58, 237, 0.1);
+}
+
+.sidebar button.active {
+  border-color: var(--accent);
+  background: rgba(124, 58, 237, 0.2);
+}
+
+.stage {
+  flex: 1;
+  padding: 40px;
+}
+
+.stage h2 {
+  margin: 0 0 24px;
+}
+
+.component-box {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 32px;
+  min-height: 200px;
+}
+
+.component-box button {
+  background: var(--accent);
+  color: white;
+  border: none;
+  border-radius: 6px;
+  padding: 10px 16px;
+  cursor: pointer;
+  font-size: 14px;
+  margin-right: 8px;
+  margin-bottom: 8px;
+}
+
+.component-box button:hover {
+  background: var(--accent-hover);
+}
+
+.component-box ul {
+  list-style: none;
+  padding: 0;
+}
+
+.component-box li {
+  padding: 8px 0;
+  border-bottom: 1px solid var(--border);
+}
+
+.light {
+  background: #f3f4f6;
+  color: #111827;
+}
+
+.dark {
+  background: #111827;
+  color: #f3f4f6;
+}
