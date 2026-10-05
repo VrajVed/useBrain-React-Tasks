@@ -1,0 +1,89 @@
+# Runs only in the upstream repo (it needs the tracker secrets, which forks never get).
+# Every hour it finds every fork, puts the ORIGINAL tests on top of the student's code,
+# runs them, and sends the results to the Google Sheet.
+name: grade
+
+on:
+  schedule:
+    - cron: '17 * * * *'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: grade
+  cancel-in-progress: false
+
+jobs:
+  discover:
+    runs-on: ubuntu-latest
+    outputs:
+      forks: ${{ steps.list.outputs.forks }}
+      count: ${{ steps.list.outputs.count }}
+    steps:
+      - id: list
+        env:
+          GH_TOKEN: ${{ github.token }}
+          HAS_TRACKER: ${{ secrets.HOOKSLINGS_TRACKER_URL != '' }}
+          REPO: ${{ github.repository }}
+        run: |
+          if [ "$HAS_TRACKER" != "true" ]; then
+            echo "No tracker secret here, so this is not the upstream repo. Skipping."
+            echo "count=0" >> "$GITHUB_OUTPUT"
+            echo "forks=[]" >> "$GITHUB_OUTPUT"
+            exit 0
+          fi
+          forks=$(gh api "repos/$REPO/forks?per_page=100" --paginate --jq '[.[].full_name]' | jq -cs 'add // []')
+          echo "Found forks: $forks"
+          echo "forks=$forks" >> "$GITHUB_OUTPUT"
+          echo "count=$(echo "$forks" | jq length)" >> "$GITHUB_OUTPUT"
+
+  # No secrets in this job: it runs student code.
+  grade:
+    needs: discover
+    if: needs.discover.outputs.count != '0'
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    strategy:
+      fail-fast: false
+      max-parallel: 10
+      matrix:
+        fork: ${{ fromJSON(needs.discover.outputs.forks) }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+          cache: npm
+      - run: npm ci
+      - name: Grade fork
+        env:
+          FORK: ${{ matrix.fork }}
+        run: node scripts/grade-fork.mjs "$FORK" grade-out
+      - uses: actions/upload-artifact@v4
+        with:
+          name: result-${{ strategy.job-index }}
+          path: grade-out/*.json
+          retention-days: 3
+
+  # Fresh machine that never runs student code. Only this job sees the secrets.
+  report:
+    needs: [discover, grade]
+    if: always() && needs.discover.outputs.count != '0'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+      - uses: actions/download-artifact@v4
+        with:
+          pattern: result-*
+          path: results
+          merge-multiple: true
+      - name: Send to Google Sheet
+        env:
+          TRACKER_URL: ${{ secrets.HOOKSLINGS_TRACKER_URL }}
+          TRACKER_TOKEN: ${{ secrets.HOOKSLINGS_TRACKER_TOKEN }}
+        run: node scripts/report.mjs results

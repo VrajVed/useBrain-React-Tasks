@@ -1,0 +1,22 @@
+# Runs in your fork on every push so you get a green tick or a red cross.
+# Forks have Actions turned off by default: open the Actions tab in your fork and enable them.
+name: check
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+          cache: npm
+      - run: npm ci
+      - name: Tests must be untouched
+        run: npm run verify-tests
+      - name: Run tests
+        run: npm run test:run

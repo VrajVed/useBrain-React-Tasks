@@ -1,6 +1,7 @@
 node_modules
 dist
-.hookslings/results.json
+grade-out
+results
+.solutions
 .DS_Store
-
 INSTRUCTIONS.md
