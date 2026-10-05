@@ -3,14 +3,22 @@ import userEvent from '@testing-library/user-event'
 import { describe, it, expect, beforeEach, afterEach } from 'vitest'
 import ThemeToggle from './ThemeToggle'
 
+const storage: Record<string, string> = {}
+
 describe('ThemeToggle', () => {
   beforeEach(() => {
-    localStorage.clear()
+    Object.keys(storage).forEach(k => delete storage[k])
+    vi.stubGlobal('localStorage', {
+      getItem: (key: string) => storage[key] ?? null,
+      setItem: (key: string, value: string) => { storage[key] = value },
+      removeItem: (key: string) => { delete storage[key] },
+      clear: () => { Object.keys(storage).forEach(k => delete storage[k]) },
+    })
   })
 
   afterEach(() => {
     cleanup()
-    localStorage.clear()
+    vi.unstubAllGlobals()
   })
 
   it('starts in light mode', () => {
@@ -31,6 +39,6 @@ describe('ThemeToggle', () => {
   it('saves the value to localStorage', async () => {
     render(<ThemeToggle />)
     await userEvent.click(screen.getByRole('button', { name: /toggle theme/i }))
-    expect(localStorage.getItem('theme')).toBe('"dark"')
+    expect(storage.theme).toBe('"dark"')
   })
 })

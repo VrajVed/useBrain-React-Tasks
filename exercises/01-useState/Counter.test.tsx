@@ -6,21 +6,19 @@ import Counter from './Counter'
 describe('Counter', () => {
   it('starts at 0', () => {
     render(<Counter />)
-    expect(screen.getByText(/Slices: 0/i)).toBeInTheDocument()
+    expect(screen.getByTestId('count')).toHaveTextContent('0')
   })
 
   it('increments when + is clicked', async () => {
     render(<Counter />)
-    const addButton = screen.getByRole('button', { name: '+' })
-    await userEvent.click(addButton)
-    expect(screen.getByText(/Slices: 1/i)).toBeInTheDocument()
+    await userEvent.click(screen.getByRole('button', { name: '+' }))
+    expect(screen.getByTestId('count')).toHaveTextContent('1')
   })
 
   it('decrements when - is clicked', async () => {
     render(<Counter />)
-    const removeButton = screen.getByRole('button', { name: '-' })
-    await userEvent.click(removeButton)
-    expect(screen.getByText(/Slices: -1/i)).toBeInTheDocument()
+    await userEvent.click(screen.getByRole('button', { name: '-' }))
+    expect(screen.getByTestId('count')).toHaveTextContent('-1')
   })
 
   it('supports multiple clicks', async () => {
@@ -29,6 +27,6 @@ describe('Counter', () => {
     await userEvent.click(addButton)
     await userEvent.click(addButton)
     await userEvent.click(addButton)
-    expect(screen.getByText(/Slices: 3/i)).toBeInTheDocument()
+    expect(screen.getByTestId('count')).toHaveTextContent('3')
   })
 })

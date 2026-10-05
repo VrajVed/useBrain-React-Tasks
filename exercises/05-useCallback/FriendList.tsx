@@ -12,7 +12,9 @@ function FriendItem({ friend, onRemove }: { friend: Friend; onRemove: (id: numbe
   return (
     <li data-testid={`friend-${friend.id}`}>
       {friend.name} (renders: {renders.current})
-      <button onClick={() => onRemove(friend.id)}>Remove</button>
+      <button data-testid={`remove-${friend.id}`} onClick={() => onRemove(friend.id)}>
+        Remove
+      </button>
     </li>
   )
 }

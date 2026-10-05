@@ -13,15 +13,14 @@ Learn React hooks by fixing broken components. Each exercise has a short lesson 
 
 ## Exercises
 
-1. `useState` - Counter
-2. `useEffect` - JokeCard
-3. `useRef` - Stopwatch
-4. `useMemo` - MagicFinder
-5. `useCallback` - FriendList
-6. `useReducer` - PizzaBuilder
-7. `useContext` - ThemeApp
-8. `custom hook` - useLocalStorage
-
+1. 01-useState - Counter
+2. 02-useEffect - JokeCard
+3. 03-useRef - Stopwatch
+4. 04-useMemo - MagicFinder
+5. 05-useCallback - FriendList
+6. 06-useReducer - PizzaBuilder
+7. 07-useContext - ThemeApp
+8. 08-useLocalStorage - ThemeToggle
 ## Rules
 
 - Do not edit any `*.test.tsx` file.

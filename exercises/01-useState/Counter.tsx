@@ -13,7 +13,7 @@ export default function Counter() {
 
   return (
     <div>
-      <h1>Slices: {count}</h1>
+      <h1 data-testid="count">{count}</h1>
       <button onClick={add}>+</button>
       <button onClick={remove}>-</button>
     </div>

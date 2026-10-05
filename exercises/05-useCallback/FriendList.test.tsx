@@ -14,7 +14,8 @@ describe('FriendList', () => {
       />,
     )
 
-    await userEvent.click(screen.getByRole('button', { name: /remove/i }))
+    const removeAlice = screen.getByTestId('remove-1')
+    await userEvent.click(removeAlice)
     expect(screen.queryByTestId('friend-1')).not.toBeInTheDocument()
     expect(screen.getByTestId('friend-2')).toBeInTheDocument()
   })
@@ -30,7 +31,8 @@ describe('FriendList', () => {
     )
 
     expect(screen.getByTestId('friend-2')).toHaveTextContent('renders: 1')
-    await userEvent.click(screen.getByRole('button', { name: /remove/i }))
+    const removeAlice = screen.getByTestId('remove-1')
+    await userEvent.click(removeAlice)
     expect(screen.getByTestId('friend-2')).toHaveTextContent('renders: 1')
   })
 })
