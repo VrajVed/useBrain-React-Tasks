@@ -55,17 +55,99 @@ pre {
   gap: 6px;
 }
 
+.sidebar nav .group {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  margin-bottom: 10px;
+}
+
+.sidebar nav .group-head {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  padding: 4px 4px 2px;
+}
+
 .sidebar nav button {
   display: flex;
-  gap: 12px;
+  gap: 10px;
   align-items: center;
   text-align: left;
   background: transparent;
   color: var(--text);
   border: 1px solid var(--border);
   border-radius: 8px;
-  padding: 10px 12px;
+  padding: 7px 10px;
+  margin-left: 18px;
   cursor: pointer;
+  font-size: 13px;
+}
+
+.sidebar .letter {
+  color: var(--muted);
+  font-weight: 700;
+  width: 10px;
+}
+
+.tabs {
+  display: flex;
+  gap: 6px;
+  margin-bottom: 18px;
+}
+
+.tabs button {
+  background: transparent;
+  color: var(--muted);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 8px 14px;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+.tabs button.on {
+  color: var(--text);
+  border-color: var(--accent);
+  background: rgba(124, 58, 237, 0.2);
+}
+
+.new-hook {
+  background: rgba(124, 58, 237, 0.12);
+  border: 1px solid var(--accent);
+  border-radius: 8px;
+  padding: 10px 14px;
+}
+
+.new-hook a {
+  color: var(--accent-hover);
+  cursor: pointer;
+  text-decoration: underline;
+}
+
+.component-box h4 {
+  margin: 12px 0 8px;
+  color: var(--muted);
+}
+
+.component-box li.done {
+  text-decoration: line-through;
+  color: var(--muted);
+}
+
+.component-box input {
+  background: var(--bg);
+  color: var(--text);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  padding: 9px 12px;
+  margin: 0 8px 8px 0;
+  font-size: 14px;
+}
+
+.component-box button:disabled {
+  opacity: 0.6;
+  cursor: wait;
 }
 
 .sidebar nav button:hover {
