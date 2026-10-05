@@ -2,6 +2,33 @@ import { useState } from 'react'
 import { exercises } from './exercises'
 import './App.css'
 
+function ExercisePreview({ exercise }: { exercise: (typeof exercises)[number] }) {
+  const { Component } = exercise
+
+  if (exercise.id === '04-useMemo') {
+    return (
+      <Component
+        tickets={[7, 13, 42, 99]}
+        findMagic={(tickets) => 'Magic: ' + tickets.join(', ')}
+      />
+    )
+  }
+
+  if (exercise.id === '05-useCallback') {
+    return (
+      <Component
+        initialFriends={[
+          { id: 1, name: 'Alice' },
+          { id: 2, name: 'Bob' },
+          { id: 3, name: 'Carol' },
+        ]}
+      />
+    )
+  }
+
+  return <Component />
+}
+
 function App() {
   const [activeId, setActiveId] = useState(exercises[0].id)
   const active = exercises.find(e => e.id === activeId)!
@@ -26,15 +53,7 @@ function App() {
       <main className="stage">
         <h2>{active.title}</h2>
         <div className="component-box">
-          <active.Component
-            tickets={[7, 13, 42, 99]}
-            findMagic={(tickets) => 'Magic: ' + tickets.join(', ')}
-            initialFriends={[
-              { id: 1, name: 'Alice' },
-              { id: 2, name: 'Bob' },
-              { id: 3, name: 'Carol' },
-            ]}
-          />
+          <ExercisePreview exercise={active} />
         </div>
       </main>
     </div>
