@@ -26,5 +26,5 @@ function Navbar({ user, onLogin, onLogout }: AuthProps) {
 
 export default function AuthApp() {
   const [user, setUser] = useState<User | null>(null)
-  return <Navbar user={user} onLogin={() => setUser({ name: 'Vraj' })} onLogout={() => setUser(null)} />
+  return <Navbar user={user} onLogin={() => setUser({ name: 'Random Person !' })} onLogout={() => setUser(null)} />
 }
