@@ -125,6 +125,8 @@ It prints a link like `http://localhost:5173`. Ctrl + click it (Cmd + click on M
 - **Middle:** two tabs. **Task** is what to fix in this part. **Lesson** explains the hook. Read the Lesson first whenever you start a new hook
 - **Right:** the live app. It updates by itself every time you save a file
 
+Drag the edge of the parts list to make it wider or narrower (double click it to reset). Click the `npm test` command above the live app to copy it.
+
 **Terminal 2, the tests:**
 
 ```bash

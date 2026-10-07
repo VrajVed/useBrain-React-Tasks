@@ -10,7 +10,7 @@ describe('07b useContext: auth context', () => {
     render(<AuthApp />)
     expect(screen.getByTestId('greeting')).toHaveTextContent('Hi, guest')
     await userEvent.click(screen.getByRole('button', { name: 'Log in' }))
-    expect(screen.getByTestId('greeting')).toHaveTextContent('Hi, Vraj')
+    expect(screen.getByTestId('greeting')).toHaveTextContent('Hi, Random Person')
     await userEvent.click(screen.getByRole('button', { name: 'Log out' }))
     expect(screen.getByTestId('greeting')).toHaveTextContent('Hi, guest')
   })

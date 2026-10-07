@@ -15,8 +15,8 @@ describe('07c useContext: useAuth hook', () => {
         <Profile />
       </AuthProvider>,
     )
-    await userEvent.click(screen.getByRole('button', { name: /log in as vraj/i }))
-    expect(screen.getByText(/signed in as vraj/i)).toBeInTheDocument()
+    await userEvent.click(screen.getByRole('button', { name: /log in as random person/i }))
+    expect(screen.getByText(/signed in as random person/i)).toBeInTheDocument()
   })
 
   it('throws a clear error when used outside AuthProvider', () => {

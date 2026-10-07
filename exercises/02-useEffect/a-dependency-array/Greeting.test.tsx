@@ -11,8 +11,8 @@ describe('02a useEffect: dependency array', () => {
 
   it('updates the title while you type', async () => {
     render(<Greeting />)
-    await userEvent.type(screen.getByPlaceholderText('Your name'), 'Vraj')
-    expect(document.title).toBe('Hi, Vraj')
+    await userEvent.type(screen.getByPlaceholderText('Your name'), 'Random Person')
+    expect(document.title).toBe('Hi, Random Person')
   })
 
   it('calls onMount only once, no matter how much you type', async () => {

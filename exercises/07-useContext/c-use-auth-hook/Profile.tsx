@@ -8,6 +8,6 @@ export default function Profile() {
       Signed in as {user.name} <button onClick={logout}>Log out</button>
     </p>
   ) : (
-    <button onClick={() => login('Vraj')}>Log in as Vraj</button>
+    <button onClick={() => login('Random Person')}>Log in as Random Person</button>
   )
 }
