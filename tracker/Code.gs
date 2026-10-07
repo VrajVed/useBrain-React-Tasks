@@ -69,19 +69,29 @@ function applySnapshot_(ss, body) {
     })
     return [s.github, name, done, notes + '/' + exercises.length]
       .concat(cells)
-      .concat([String(s.sha || '').slice(0, 7), s.checkedAt ? new Date(s.checkedAt) : ''])
+      .concat([changed_(s.testsChanged), String(s.sha || '').slice(0, 7), s.checkedAt ? new Date(s.checkedAt) : ''])
   })
 
   rows.sort(function (a, b) {
     return b[2] - a[2] || String(a[0]).localeCompare(String(b[0]))
   })
 
-  var header = ['GitHub', 'Name', 'Done', 'Notes'].concat(exercises).concat(['Commit', 'Checked at'])
+  var header = ['GitHub', 'Name', 'Done', 'Notes'].concat(exercises).concat(['Tests changed', 'Commit', 'Checked at'])
   progress.clear()
   progress.getRange(1, 1, rows.length + 1, header.length).setValues([header].concat(rows))
   progress.setFrozenRows(1)
 
   return { ok: true, students: rows.length, newlyPassed: newlyPassed }
+}
+
+// Protected files the student changed in their fork. Only a heads up, grading uses the original tests.
+function changed_(files) {
+  if (!files || !files.length) return ''
+  var names = files.map(function (f) {
+    return String(f).split('/').pop()
+  })
+  var shown = names.slice(0, 4).join(', ')
+  return files.length + ': ' + shown + (names.length > 4 ? ' +' + (names.length - 4) + ' more' : '')
 }
 
 function previousPasses_(sheet) {

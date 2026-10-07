@@ -2,9 +2,10 @@
 // Copies ONLY the student's implementation files and NOTES.md into this checkout,
 // leaving the original tests in place, runs the tests, and writes one JSON result.
 import { execFileSync } from 'node:child_process'
+import { createHash } from 'node:crypto'
 import { cpSync, existsSync, lstatSync, mkdirSync, mkdtempSync, readdirSync, readFileSync, writeFileSync } from 'node:fs'
 import { tmpdir } from 'node:os'
-import { join, resolve } from 'node:path'
+import { dirname, join, resolve } from 'node:path'
 
 const args = process.argv.slice(2)
 const fork = args[0]
@@ -50,6 +51,71 @@ if (resolve(src) === resolve('.')) {
   console.error('--from must point at a different folder than this checkout')
   process.exit(2)
 }
+
+const sha256 = buf => createHash('sha256').update(buf).digest('hex')
+
+// Every hash a protected file has ever had upstream, so a fork made before a test changed
+// is not flagged. Needs the full history (fetch-depth: 0), otherwise only the current hashes count.
+function knownHashes() {
+  const known = {}
+  const add = hashes => {
+    for (const [file, hash] of Object.entries(hashes)) (known[file] ??= new Set()).add(hash)
+  }
+  add(JSON.parse(readFileSync('.usebrain/test-hashes.json', 'utf8')))
+  try {
+    const commits = execFileSync('git', ['log', '--format=%H', '--', '.usebrain/test-hashes.json']).toString().split('\n')
+    for (const c of commits.filter(Boolean)) {
+      try {
+        add(JSON.parse(execFileSync('git', ['show', `${c}:.usebrain/test-hashes.json`]).toString()))
+      } catch {
+        // a commit with a broken hash file, skip it
+      }
+    }
+  } catch {
+    // no git history here, the current hashes are enough
+  }
+  return known
+}
+
+// Test files in the fork, found without following symlinks.
+function forkTests(root, dir, depth = 0, out = []) {
+  let names = []
+  try {
+    names = readdirSync(join(root, dir))
+  } catch {
+    return out
+  }
+  for (const name of names) {
+    const rel = join(dir, name)
+    const st = lstatSync(join(root, rel))
+    if (st.isDirectory() && depth < 3) forkTests(root, rel, depth + 1, out)
+    else if (st.isFile() && (dir.startsWith('tests') || /\.test\.tsx?$/.test(name))) out.push(rel)
+  }
+  return out
+}
+
+// Protected files (tests and AI tutor rules) the student changed, deleted or added.
+// Only reported on the sheet, the grade always uses the original tests anyway.
+function changedProtected(from) {
+  const known = knownHashes()
+  const current = Object.keys(JSON.parse(readFileSync('.usebrain/test-hashes.json', 'utf8')))
+  const files = new Set([...current, ...forkTests(from, 'exercises'), ...forkTests(from, 'tests')])
+  const changed = []
+  for (const file of [...files].sort()) {
+    const path = join(from, file)
+    if (!existsSync(path)) {
+      // a whole part missing just means the fork is older than that part
+      if (existsSync(join(from, dirname(file))) && dirname(file) !== '.') changed.push(file)
+      continue
+    }
+    const st = lstatSync(path)
+    if (!st.isFile() || st.size > 1_000_000 || !known[file]?.has(sha256(readFileSync(path)))) changed.push(file)
+  }
+  return changed
+}
+
+const tampered = changedProtected(src)
+if (tampered.length) console.log(`${fork}: changed protected files: ${tampered.join(', ')}`)
 
 const isTest = name => /\.(test|spec)\.[cm]?[jt]sx?$/.test(name)
 const allowed = name => /\.(tsx?|md|json|css)$/.test(name) && !isTest(name)
@@ -111,6 +177,6 @@ for (const ex of exercises) {
   result[ex] = { passed: mine.length > 0 && mine.every(s => s.status === 'passed'), notes: notes[ex] }
 }
 
-writeResult(result)
+writeResult(result, { testsChanged: tampered })
 const done = Object.values(result).filter(r => r.passed).length
 console.log(`${fork}: ${done}/${exercises.length} passed`)

@@ -26,6 +26,7 @@ The sheet shows, for every member:
 | **01-useState ... 08-custom-hooks** | ✅ when **all three** parts (a, b, c) of that hook pass. Two out of three still shows empty |
 | **Done** | how many of the 8 hooks you have finished |
 | **Notes** | how many `NOTES.md` files you actually answered |
+| **Tests changed** | any test or AI tutor rules file you changed in your fork. It does not change your score, since the original tests are used anyway, but it shows up here |
 | **Commit** and **Checked at** | your latest pushed code and when the checker last looked at it |
 
 There is also a log of **when** each hook was first finished, so steady progress shows up, and so does doing everything the night before.
