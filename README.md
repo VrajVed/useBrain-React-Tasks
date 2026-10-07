@@ -8,6 +8,34 @@ Learn React hooks by fixing broken mini apps. Each exercise is a small app that 
 
 Made for the DJSCE Compute web dev co-committee.
 
+## How your progress is tracked
+
+Your progress is tracked automatically on a **Google Sheet** that the Web Dev Head checks. You do not fill anything in, and you do not need to tell anyone you finished. **Pushing your code to your fork is your submission.**
+
+Every hour, a checker:
+
+1. finds every fork of this repo, including yours
+2. takes your latest pushed code
+3. runs the **original** tests on it (not the copy in your fork, so changing tests does nothing)
+4. updates your row on the sheet
+
+The sheet shows, for every member:
+
+| Column | What it means |
+|---|---|
+| **01-useState ... 08-custom-hooks** | ✅ when **all three** parts (a, b, c) of that hook pass. Two out of three still shows empty |
+| **Done** | how many of the 8 hooks you have finished |
+| **Notes** | how many `NOTES.md` files you actually answered |
+| **Commit** and **Checked at** | your latest pushed code and when the checker last looked at it |
+
+There is also a log of **when** each hook was first finished, so steady progress shows up, and so does doing everything the night before.
+
+Things that keep you off the sheet:
+
+- you made your copy some other way than the **Fork** button (downloaded the ZIP, used "Use this template", or uploaded the files to a new repo). The checker only finds real forks
+- you did not **push**. Code that only lives on your laptop does not count
+- you pushed less than an hour ago. Wait for the next check
+
 ## Quick start
 
 Already have Node 20+, Git and VS Code? Fork this repo with the **Fork** button (top right), then:
@@ -252,9 +280,7 @@ git push
 
 Open your fork on GitHub. You should see your message next to the files and "1 minute ago" or similar.
 
-That is it. Every hour a checker visits your fork, runs the **original** tests on your code, and updates the committee progress sheet. You do not have to tell anyone, pushing is the submission. It can take up to an hour to show up.
-
-On the sheet, a hook gets its ✅ only when **all three** of its parts pass.
+That is it. Every hour the checker visits your fork and updates the progress sheet (see [How your progress is tracked](#how-your-progress-is-tracked)). It can take up to an hour to show up.
 
 ---
 
